@@ -688,18 +688,18 @@
     <div class="howto-grid">
       <div class="howto-step" tabindex="0">
         <span class="howto-num">01</span>
-        <h3>Выбираем хук</h3>
-        <p>Один из трёх типов — провокация, решение или ловушка. Смотри примеры в разборе ниже.</p>
+        <h3>Раскрываем тему</h3>
+        <p>Вписываешь тему в общем виде — платформа находит 10 неочевидных углов, о которых знают только профи.</p>
       </div>
       <div class="howto-step" tabindex="0">
         <span class="howto-num">02</span>
-        <h3>Готовим промт</h3>
-        <p>Для Reels или поста-карусели — собираем готовый промт под свою тему в пару кликов.</p>
+        <h3>Выбираем хук</h3>
+        <p>Один из трёх типов — провокация, решение или ловушка. Платформа сама пишет готовые варианты под твою тему.</p>
       </div>
       <div class="howto-step" tabindex="0">
         <span class="howto-num">03</span>
-        <h3>Вставляем в ИИ</h3>
-        <p>Идём в свой ChatGPT или Claude, вставляем промт, выбираем результат, который больше нравится.</p>
+        <h3>Получаем текст</h3>
+        <p>Готовый текст для Reels или поста пишет сама платформа — не промт для копирования, а сразу результат. Не понравилось — жми ещё раз.</p>
       </div>
       <div class="howto-step" tabindex="0">
         <span class="howto-num">04</span>
@@ -709,6 +709,37 @@
     </div>
   </div>
 </div>
+
+<div class="section-title-wrap">
+  <div class="wrap">
+    <h2 class="section-title">Давай раскроем эту тему через:</h2>
+  </div>
+</div>
+
+<!-- ================= РАСКРЫТИЕ ТЕМЫ ================= -->
+<section class="block" id="raskrytie">
+  <div class="wrap">
+    <div class="block-head">
+      <span class="block-tag">Шаг 0</span>
+      <h2>О чём будем писать</h2>
+    </div>
+    <p class="block-sub">Впиши тему в общем виде. Мы разложим её на 10 неочевидных углов - не банальные советы, а то, что знают только профи в этой теме. Дальше выбираешь один угол, и с ним уже собираем хук и текст.</p>
+
+    <input type="text" id="rk-topic" class="wiz-input" placeholder="например: прокрастинация, деньги, отношения, продажи">
+    <div class="cta-row">
+      <button class="btn gold" id="rk-btn" onclick="generateSubtopics()">Раскрыть тему</button>
+      <span class="hint" id="rk-hint">это займёт секунд 10-15</span>
+    </div>
+
+    <div id="rk-result" style="display:none; margin-top:20px;">
+      <div id="rk-list" class="chip-grid" style="flex-direction:column; align-items:stretch;"></div>
+      <div class="cta-row" style="margin-top:14px;">
+        <button class="btn" onclick="generateSubtopics(true)">Другие варианты</button>
+      </div>
+      <p class="hint" id="rk-selected" style="margin-top:10px;"></p>
+    </div>
+  </div>
+</section>
 
 <div class="section-title-wrap">
   <div class="wrap">
@@ -777,7 +808,7 @@
       <span class="block-tag">Главный инструмент</span>
       <h2>Собери текст под свою тему за 3 клика</h2>
     </div>
-    <p class="block-sub">Отвечаешь на три коротких шага прямо здесь. В конце получаешь один готовый промт со всеми твоими ответами — вставляешь его в ChatGPT или Claude одним сообщением, и ИИ сразу присылает готовый текст, разбитый на абзацы, без пометок и лишних подписей — можно копировать и вставлять как есть.</p>
+    <p class="block-sub">Отвечаешь на три коротких шага прямо здесь. Платформа сама пишет готовый текст под Reels или пост — не промт для копирования, а сразу текст, который можно читать на камеру. Не понравилось — жми ещё раз, получишь другой вариант.</p>
 
     <div class="wizard" id="wizard">
 
@@ -811,14 +842,17 @@
       </div>
 
       <div class="cta-row">
-        <button class="btn gold" onclick="assemblePrompt()">Собрать промт</button>
-        <span class="hint">заполни все три шага</span>
+        <button class="btn gold" id="wiz-btn" onclick="assemblePrompt()">Написать текст</button>
+        <span class="hint" id="wiz-hint">заполни все три шага</span>
       </div>
 
       <div id="wiz-result" style="display:none; margin-top:22px;">
-        <p style="font-size:.9rem; color:var(--text-dim); margin-bottom:10px;">Готово. Копируй целиком и вставляй в чат с ИИ одним сообщением:</p>
+        <p style="font-size:.9rem; color:var(--text-dim); margin-bottom:10px;">Готовый текст — читай на камеру или вставляй в подпись как есть:</p>
         <div class="promptbox" id="prompt-wizard"></div>
-        <button class="btn" onclick="copyBlock('prompt-wizard', this)">Скопировать промт</button>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;">
+          <button class="btn" onclick="copyBlock('prompt-wizard', this)">Скопировать текст</button>
+          <button class="btn gold" onclick="assemblePrompt()">Ещё вариант</button>
+        </div>
       </div>
 
     </div>
@@ -1112,73 +1146,79 @@
   fillChips('reshenie');
   fillChips('lovushka');
 
-  /* ---------- генератор хуков по теме (8 формул виральности, промт скрыт) ---------- */
-  const HOOK_TPL = {
-    provokaciya: [
-      "Про {t} тебе врут — и делают это специально",
-      "{Tc} работает не так, как тебе говорили",
-      "Хватит бороться с {t}. Это не лечится силой воли",
-      "Непопулярное мнение: {t} — не твоя вина",
-      "Все советы про {t} бесполезны. Вот почему",
-      "{Tc} — это не про лень, это про то, как устроен мозг",
-      "Одни закрывают вопрос с {t} за месяц, другие годами. Дело не в дисциплине",
-      "Ты не ленивая. Тебя просто научили неправильно думать про {t}",
-      "За {t} винят тебя, а виновата система",
-      "Пока ты стыдишься {t}, на этом кто-то зарабатывает",
-      "{Tc}: то, что тебе продают как решение, только усугубляет",
-      "Если у тебя {t} — с тобой всё в порядке. Проблема в другом"
-    ],
-    reshenie: [
-      "{Tc}: 3 шага, 1 причина, 0 сложных терминов",
-      "Как сдвинуть {t} за один вечер — без насилия над собой",
-      "Одна привычка на 2 минуты в день — и {t} перестаёт мешать",
-      "5 признаков, что {t} уже забирает твои деньги",
-      "Что работает с {t}, а что только тратит твоё время",
-      "Каждый день с {t} — это упущенное, что уже не вернуть",
-      "Самый простой способ начать с {t}: сделай только первый шаг",
-      "{Tc} уходит, когда убираешь одну ошибку. Вот какую",
-      "Не откладывай {t} — через год это будет стоить дороже",
-      "Разбор за минуту: почему {t} не решается и что с этим делать",
-      "Пока ты терпишь {t}, другие уже впереди",
-      "{Tc} за неделю: план, который реально выполнить"
-    ],
-    lovushka: [
-      "Про {t} есть одна вещь, которую все узнают последними",
-      "Досмотри до конца: про {t} я скажу то, о чём обычно молчат",
-      "Если бы я знала это про {t} раньше — сэкономила бы годы",
-      "У {t} есть причина, которую не пишут ни в одной статье",
-      "Про {t} тебе не рассказывают — и не потому, что это секрет",
-      "Есть 3 слова, после которых {t} перестаёт пугать. Скажу в конце",
-      "Я долго не понимала, что не так с {t}. Пока не заметила одну деталь",
-      "Про {t} все думают одно, а правда совсем в другом",
-      "Что общего у всех, кто справился с {t}? Не то, что ты думаешь",
-      "Про {t} есть тест на 10 секунд. Пройди его в конце"
-    ]
-  };
+  /* ---------- раскрытие темы (промт А, зашит на бэкенде) ---------- */
+  function parseNumberedList(text){
+    return text.split('\n')
+      .map(s => s.replace(/^\s*\d+[\.\)]\s*/, '').trim())
+      .filter(s => s.length > 0);
+  }
+
+  let selectedTopic = '';
+
+  async function generateSubtopics(isRegen){
+    const topicInput = document.getElementById('rk-topic');
+    const topic = topicInput.value.trim();
+    if(!topic){ showToast('Впиши тему'); topicInput.focus(); return; }
+    const btn = document.getElementById('rk-btn');
+    const hint = document.getElementById('rk-hint');
+    btn.disabled = true; hint.textContent = 'Копаю глубоко, секунд 10-15...';
+    try{
+      const text = await apiGenerate('subtopics', { topic });
+      const items = parseNumberedList(text);
+      const list = document.getElementById('rk-list');
+      list.innerHTML = '';
+      items.forEach(function(item){
+        const b = document.createElement('button');
+        b.className = 'chip';
+        b.style.textAlign = 'left';
+        b.innerHTML = item + '<span class="copy-flag">выбрать</span>';
+        b.addEventListener('click', function(){
+          selectedTopic = item;
+          document.getElementById('rk-selected').textContent = 'Выбрано: ' + item;
+          document.querySelectorAll('.hg-topic').forEach(inp => inp.value = item);
+          const wizTopic = document.getElementById('wiz-topic');
+          if(wizTopic) wizTopic.value = item;
+          showToast('Тема выбрана - теперь жми "Собрать хуки" или спускайся к мастеру текста');
+        });
+        list.appendChild(b);
+      });
+      document.getElementById('rk-result').style.display = 'block';
+    } catch(err){
+      showToast(err.message);
+    }
+    btn.disabled = false; hint.textContent = 'это займёт секунд 10-15';
+  }
+
+  /* ---------- генератор хуков по теме (промт Б как линза + бэкенд) ---------- */
   const HOOK_STATE = {};
-  function genHooksFor(key){
+  async function genHooksFor(key){
     const inp = document.querySelector('.hg-topic[data-key="'+key+'"]');
     const raw = (inp && inp.value || '').trim();
     if(!raw){ showToast('Впиши тему'); if(inp) inp.focus(); return; }
-    const t  = raw.charAt(0).toLowerCase() + raw.slice(1);
-    const Tc = raw.charAt(0).toUpperCase() + raw.slice(1);
-    const list = HOOK_TPL[key].map(function(x){ return x.replace(/\{t\}/g, t).replace(/\{Tc\}/g, Tc); });
-    HOOK_STATE[key] = list;
     const out = document.getElementById('hg-out-'+key);
-    out.innerHTML = '';
-    list.forEach(function(text){
-      const b = document.createElement('button');
-      b.className = 'chip';
-      b.innerHTML = text + '<span class="copy-flag">копировать</span>';
-      b.addEventListener('click', function(){
-        copyText(text, b.querySelector('.copy-flag'));
-        b.classList.add('copied');
-        setTimeout(function(){ b.classList.remove('copied'); }, 1400);
+    out.innerHTML = '<span class="hint">Ищу неочевидные углы, секунд 15-20...</span>';
+    try{
+      const text = await apiGenerate('hookset', { type: key, topic: raw });
+      const list = parseNumberedList(text);
+      HOOK_STATE[key] = list;
+      out.innerHTML = '';
+      list.forEach(function(text){
+        const b = document.createElement('button');
+        b.className = 'chip';
+        b.innerHTML = text + '<span class="copy-flag">копировать</span>';
+        b.addEventListener('click', function(){
+          copyText(text, b.querySelector('.copy-flag'));
+          b.classList.add('copied');
+          setTimeout(function(){ b.classList.remove('copied'); }, 1400);
+        });
+        out.appendChild(b);
       });
-      out.appendChild(b);
-    });
-    const all = document.querySelector('.hg-copyall[data-key="'+key+'"]');
-    if(all) all.style.display = 'inline-flex';
+      const all = document.querySelector('.hg-copyall[data-key="'+key+'"]');
+      if(all) all.style.display = 'inline-flex';
+    } catch(err){
+      out.innerHTML = '';
+      showToast(err.message);
+    }
   }
   function copyAllFor(key){
     const list = HOOK_STATE[key] || [];
@@ -1251,34 +1291,24 @@
   setupOptGroup('wiz-style-options', 'wiz-style-custom', (v)=>{ wizStyle = v; });
   setupOptGroup('wiz-cta-options', 'wiz-cta-custom', (v)=>{ wizCta = v; });
 
-  function assemblePrompt(){
+  async function assemblePrompt(){
     const topic = document.getElementById('wiz-topic').value.trim();
     if(!topic){ showToast('Впиши тему в шаг 1'); document.getElementById('wiz-topic').focus(); return; }
     if(!wizStyle){ showToast('Выбери стиль в шаге 2'); return; }
     if(!wizCta){ showToast('Выбери цель в шаге 3'); return; }
 
-    const prompt = `Ты — сценарист вирусных Reels и эксперт по вовлечению зрителя.
-
-Тема: ${topic}
-Подача: ${wizStyle}
-Финальный призыв (CTA): ${wizCta}
-
-Собери короткий вовлекающий текст под Reels по формуле:
-хук в первой фразе → мостик, который переводит хук в тему → механика или суть по делу (2-3 мысли) → живой пример или конкретная деталь → вывод → мягкий призыв (${wizCta}).
-
-Правила:
-— выдай готовый текст СРАЗУ одним куском, без подписей вида «Хук:», «Вывод:» и так далее — просто связный текст, разбитый на абзацы, который можно скопировать и вставить как есть
-— короткие рубленые предложения, без канцелярита
-— конкретика вместо общих слов: цифры, сроки, примеры
-— без длинного тире, только короткое «-»
-— подача выдержана в стиле: ${wizStyle}
-— текст читается вслух за 25-40 секунд
-
-После текста спроси одной фразой: «Нравится, или что-то поправить?» — и жди ответа, прежде чем что-либо менять.`;
-
-    document.getElementById('prompt-wizard').textContent = prompt;
-    document.getElementById('wiz-result').style.display = 'block';
-    document.getElementById('wiz-result').scrollIntoView({behavior:'smooth', block:'nearest'});
+    const btn = document.getElementById('wiz-btn');
+    const hint = document.getElementById('wiz-hint');
+    btn.disabled = true; hint.textContent = 'Копаю инсайты и пишу текст, секунд 15-20...';
+    try{
+      const text = await apiGenerate('textmaster', { topic, style: wizStyle, cta: wizCta });
+      document.getElementById('prompt-wizard').textContent = text;
+      document.getElementById('wiz-result').style.display = 'block';
+      document.getElementById('wiz-result').scrollIntoView({behavior:'smooth', block:'nearest'});
+    } catch(err){
+      showToast(err.message);
+    }
+    btn.disabled = false; hint.textContent = 'заполни все три шага';
   }
 
   /* ---------- carousel wizard ---------- */
@@ -1330,8 +1360,26 @@
 </div>
 
 <script>
+  /* ---------- API ---------- */
+  const API_BASE = 'https://hooks-api.104-143-218-127.sslip.io';
+  const CODE_KEY = 'proyav_api_code';
+  let apiCode = sessionStorage.getItem(CODE_KEY) || '';
+
+  async function apiGenerate(step, context){
+    const r = await fetch(API_BASE + '/api/generate', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ code: apiCode, step, context })
+    });
+    const data = await r.json();
+    if(!r.ok){
+      if(r.status === 403) throw new Error('Код доступа не принят - обнови страницу и войди заново');
+      if(r.status === 429) throw new Error('Дневной лимит генераций исчерпан, попробуй завтра');
+      throw new Error(data.error || 'Что-то пошло не так');
+    }
+    return data.text;
+  }
+
   /* ---------- gate check ---------- */
-  const CODE_WORD = 'ДЕЛАЮ';
   const GATE_KEY = 'hooks_workshop_unlocked';
   const NAME_KEY = 'hooks_workshop_name';
 
@@ -1360,10 +1408,24 @@
     unlockSite();
   }
 
-  document.getElementById('gate-form').addEventListener('submit', function(e){
+  document.getElementById('gate-form').addEventListener('submit', async function(e){
     e.preventDefault();
-    const val = normalize(document.getElementById('gate-input').value);
-    if(val === CODE_WORD){
+    const raw = document.getElementById('gate-input').value.trim();
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.disabled = true;
+    let ok = false;
+    try{
+      const r = await fetch(API_BASE + '/api/verify-code', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ code: raw })
+      });
+      const data = await r.json();
+      ok = !!data.ok;
+    } catch(err){ ok = false; }
+    btn.disabled = false;
+    if(ok){
+      apiCode = raw;
+      sessionStorage.setItem(CODE_KEY, raw);
       document.getElementById('gate-error').textContent = '';
       document.getElementById('gate-error-cta').style.display = 'none';
       document.getElementById('gate-step-word').style.display = 'none';

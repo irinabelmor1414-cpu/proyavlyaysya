@@ -710,18 +710,48 @@
   </div>
 </div>
 
-<!-- ================= О ЧЁМ ПИШЕМ + ХУКИ ПО НАПРАВЛЕНИЯМ ================= -->
+<!-- ================= ШАГ 0: О ЧЁМ ПИШЕМ ================= -->
 <section class="block" id="raskrytie">
   <div class="wrap">
     <div class="block-head">
       <span class="block-tag">Шаг 0</span>
       <h2>О чём будем писать</h2>
     </div>
-    <p class="block-sub"><strong>Хук - это заголовок для твоего рилса или поста-карусели.</strong> Его задача - зацепить внимание в первые секунды, чтобы человек не пролистнул, а остался смотреть или читать дальше. Впиши тему - и ниже получишь готовые хуки сразу по всем трём направлениям.</p>
+    <p class="block-sub">Впиши тему в общем виде. Ниже получишь варианты, как её можно обыграть - отметь галочкой то, что понравилось (можно несколько). Или сразу впиши свою идею внизу.</p>
 
     <input type="text" id="rk-topic" class="wiz-input" placeholder="например: прокрастинация, деньги, отношения, продажи">
+    <div class="cta-row">
+      <button class="btn gold" id="rk-btn" onclick="generateAngles()">Показать варианты</button>
+      <span class="hint" id="rk-hint">жми, когда тема вписана</span>
+    </div>
 
-    <div class="hook-dir-grid" style="margin-top:18px; display:flex; flex-direction:column; gap:18px;">
+    <div id="rk-angles" style="margin-top:16px; display:flex; flex-direction:column; gap:10px;"></div>
+
+    <div class="wiz-step" style="margin-top:14px;">
+      <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+        <input type="checkbox" id="rk-custom-check" style="margin-top:4px;">
+        <input type="text" id="rk-custom" class="wiz-input" placeholder="или впиши свою идею, о чём рассказать" style="flex:1;">
+      </label>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ШАГ 1: ВЫБИРАЕМ ХУК ================= -->
+<div class="section-title-wrap">
+  <div class="wrap">
+    <h2 class="section-title">Выбираем хук</h2>
+  </div>
+</div>
+
+<section class="block" id="hookstep">
+  <div class="wrap">
+    <div class="block-head">
+      <span class="block-tag">Шаг 1</span>
+      <h2>Хук - заголовок твоего ролика</h2>
+    </div>
+    <p class="block-sub">Его задача - зацепить внимание в первые секунды, чтобы человек не пролистнул, а остался смотреть или читать дальше. Платформа сама сгенерит хуки под то, что ты отметила галочкой в шаге 0.</p>
+
+    <div class="hook-dir-grid" style="display:flex; flex-direction:column; gap:18px;">
 
       <div class="hook-dir">
         <div class="block-head" style="margin-bottom:6px;"><span class="block-tag">Провокация</span></div>
@@ -748,12 +778,6 @@
     <p class="hint" style="margin-top:16px;">Понравился хук - копируй его (клик по хуку) и вставляй в шаг «Давай составим текст рилса» ниже.</p>
   </div>
 </section>
-
-<div class="section-title-wrap">
-  <div class="wrap">
-    <h2 class="section-title">Выбираем хук</h2>
-  </div>
-</div>
 
 <!-- ================= ПРОВОКАЦИЯ ================= -->
 <section class="block" id="provokaciya">
@@ -1166,11 +1190,48 @@
       .filter(s => s.length > 0);
   }
 
-  /* ---------- хуки прямо в шаге 0 (промт Б как линза + бэкенд) ---------- */
-  async function genHooksInline(key){
+  /* ---------- шаг 0: варианты, как обыграть тему (без зашитого мега-промта) ---------- */
+  async function generateAngles(){
     const topicInput = document.getElementById('rk-topic');
     const topic = topicInput.value.trim();
-    if(!topic){ showToast('Впиши тему выше'); topicInput.focus(); return; }
+    if(!topic){ showToast('Сначала впиши тему'); topicInput.focus(); return; }
+    const btn = document.getElementById('rk-btn');
+    const hint = document.getElementById('rk-hint');
+    btn.disabled = true; hint.textContent = 'Подбираю варианты...';
+    try{
+      const text = await apiGenerate('angles', { topic });
+      const items = parseNumberedList(text);
+      const box = document.getElementById('rk-angles');
+      box.innerHTML = '';
+      items.forEach(function(item, i){
+        const row = document.createElement('label');
+        row.style.cssText = 'display:flex; align-items:flex-start; gap:10px; cursor:pointer;';
+        row.innerHTML = '<input type="checkbox" class="rk-angle-check" style="margin-top:4px;"><span>'+item+'</span>';
+        box.appendChild(row);
+      });
+    } catch(err){
+      showToast(err.message);
+    }
+    btn.disabled = false; hint.textContent = 'жми, когда тема вписана';
+  }
+
+  function getSelectedTopic(){
+    const picked = [];
+    document.querySelectorAll('.rk-angle-check:checked').forEach(cb => {
+      picked.push(cb.parentElement.querySelector('span').textContent);
+    });
+    const customCheck = document.getElementById('rk-custom-check');
+    const customVal = document.getElementById('rk-custom').value.trim();
+    if(customCheck && customCheck.checked && customVal) picked.push(customVal);
+    if(picked.length) return picked.join('; ');
+    if(customVal) return customVal;
+    return document.getElementById('rk-topic').value.trim();
+  }
+
+  /* ---------- хуки в шаге 1 (промт Б как линза + бэкенд) ---------- */
+  async function genHooksInline(key){
+    const topic = getSelectedTopic();
+    if(!topic){ showToast('Сначала впиши тему в шаге 0 и отметь галочкой вариант'); return; }
     const out = document.getElementById('rk-out-'+key);
     out.innerHTML = '<span class="hint">Ищу неочевидные углы, секунд 15-20...</span>';
     try{

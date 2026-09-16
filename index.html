@@ -1410,7 +1410,7 @@
 
   document.getElementById('gate-form').addEventListener('submit', async function(e){
     e.preventDefault();
-    const raw = document.getElementById('gate-input').value.trim();
+    const raw = normalize(document.getElementById('gate-input').value);
     const btn = e.target.querySelector('button[type=submit]');
     btn.disabled = true;
     let ok = false;

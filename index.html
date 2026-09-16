@@ -655,12 +655,10 @@
   <div class="topnav-inner">
     <div class="topnav-brand">🪝 Крючки для Reels</div>
     <div class="topnav-links">
-      <a href="#provokaciya">Провокация</a>
-      <a href="#reshenie">Решение</a>
-      <a href="#lovushka">Ловушка</a>
-      <a href="#generator">Текст по теме</a>
+      <a href="#raskrytie">Шаг 1</a>
+      <a href="#hookstep">Шаг 2</a>
+      <a href="#generator">Шаг 3</a>
       <a href="#carousel">Карусель</a>
-      <a href="#opisanie">Описание</a>
     </div>
   </div>
 </div>
@@ -710,14 +708,14 @@
   </div>
 </div>
 
-<!-- ================= ШАГ 0: О ЧЁМ ПИШЕМ ================= -->
+<!-- ================= ШАГ 1: О ЧЁМ ПИШЕМ ================= -->
 <section class="block" id="raskrytie">
   <div class="wrap">
     <div class="block-head">
-      <span class="block-tag">Шаг 0</span>
+      <span class="block-tag">ШАГ 1</span>
       <h2>О чём будем писать</h2>
     </div>
-    <p class="block-sub">Впиши тему в общем виде. Ниже получишь варианты, как её можно обыграть - отметь галочкой то, что понравилось (можно несколько). Или сразу впиши свою идею внизу.</p>
+    <p class="block-sub">Впиши свою тему - платформа предложит варианты, как показать её в рилсе. Ниже получишь варианты, как её можно обыграть - отметь галочкой то, что понравилось (можно несколько). Или сразу впиши свою идею внизу.</p>
 
     <input type="text" id="rk-topic" class="wiz-input" placeholder="например: прокрастинация, деньги, отношения, продажи">
     <div class="cta-row">
@@ -736,100 +734,41 @@
   </div>
 </section>
 
-<!-- ================= ШАГ 1: ВЫБИРАЕМ ХУК ================= -->
-<div class="section-title-wrap">
-  <div class="wrap">
-    <h2 class="section-title">Выбираем хук</h2>
-  </div>
-</div>
-
+<!-- ================= ШАГ 2: ВЫБИРАЕМ ХУК ================= -->
 <section class="block" id="hookstep">
   <div class="wrap">
     <div class="block-head">
-      <span class="block-tag">Шаг 1</span>
-      <h2>Хук - заголовок твоего ролика</h2>
+      <span class="block-tag">ШАГ 2</span>
+      <h2>ВЫБИРАЕМ ХУК</h2>
     </div>
-    <p class="block-sub">Его задача - зацепить внимание в первые секунды, чтобы человек не пролистнул, а остался смотреть или читать дальше. Платформа сама сгенерит хуки под то, что ты отметила галочкой в шаге 0.</p>
+    <p class="block-sub"><strong>Хук - это заголовок твоего рилса или поста-карусели.</strong> Его задача - зацепить внимание в первые секунды, чтобы человек не пролистнул, а остался смотреть или читать дальше. Платформа сама сгенерит хуки под то, что ты отметила галочкой в шаге 1.</p>
+    <p class="block-sub"><strong>Что делать дальше:</strong> выбери один из трёх видов хуков ниже, жми кнопку - получишь 10 вариантов. Найди среди них тот, что понравился, и скопируй его (просто клик по хуку) - он пригодится в шаге 3.</p>
 
     <div class="hook-dir-grid" style="display:flex; flex-direction:column; gap:18px;">
 
       <div class="hook-dir">
-        <div class="block-head" style="margin-bottom:6px;"><span class="block-tag">Провокация</span></div>
-        <p class="hint" style="margin:0 0 8px;">Ломает привычное мнение или называет вещи прямо - зритель либо соглашается, либо спорит в комментариях.</p>
+        <div class="block-head" style="margin-bottom:6px;"><span class="block-tag">ХУК-ПРОВОКАЦИЯ</span></div>
+        <p class="hint" style="margin:0 0 8px;">Что это: хук ломает привычное мнение или называет вещи прямо. Для чего: зритель не может просто пролистать - либо согласен и досматривает, либо спорит в комментариях. Результат: больше комментариев и сохранений, работает лучше всего с чёткой позицией.</p>
         <button class="btn gold" onclick="genHooksInline('provokaciya')">Получить 10 хуков-провокаций</button>
         <div class="chip-grid" id="rk-out-provokaciya" style="margin-top:12px;"></div>
       </div>
 
       <div class="hook-dir">
-        <div class="block-head" style="margin-bottom:6px;"><span class="block-tag gold">Решение</span></div>
-        <p class="hint" style="margin:0 0 8px;">Сразу обещает конкретную пользу - шаг, метод, разбор ошибки. Выгода видна в первой фразе.</p>
+        <div class="block-head" style="margin-bottom:6px;"><span class="block-tag gold">ХУК-РЕШЕНИЕ</span></div>
+        <p class="hint" style="margin:0 0 8px;">Что это: хук сразу обещает конкретную пользу - шаг, метод, разбор ошибки. Для чего: зритель остаётся, потому что видит выгоду для себя уже в первой фразе. Результат: хорошо заходит для экспертного и обучающего контента, растит доверие к тебе как к специалисту.</p>
         <button class="btn gold" onclick="genHooksInline('reshenie')">Получить 10 хуков-решений</button>
         <div class="chip-grid" id="rk-out-reshenie" style="margin-top:12px;"></div>
       </div>
 
       <div class="hook-dir">
-        <div class="block-head" style="margin-bottom:6px;"><span class="block-tag">Ловушка</span></div>
-        <p class="hint" style="margin:0 0 8px;">Создаёт разрыв в информации - что-то обещано, но не сказано сразу. Мозг не может уйти, не узнав продолжение.</p>
+        <div class="block-head" style="margin-bottom:6px;"><span class="block-tag">ХУК-ЛОВУШКА</span></div>
+        <p class="hint" style="margin:0 0 8px;">Что это: хук создаёт разрыв в информации - что-то обещано, но не сказано сразу. Для чего: мозг физически не может уйти, не закрыв гештальт, зритель досматривает до конца. Результат: высокая глубина просмотра - но обещание в начале обязано выполниться до конца ролика, иначе доверие рушится.</p>
         <button class="btn gold" onclick="genHooksInline('lovushka')">Получить 10 хуков-ловушек</button>
         <div class="chip-grid" id="rk-out-lovushka" style="margin-top:12px;"></div>
       </div>
 
     </div>
-    <p class="hint" style="margin-top:16px;">Понравился хук - копируй его (клик по хуку) и вставляй в шаг «Давай составим текст рилса» ниже.</p>
-  </div>
-</section>
-
-<!-- ================= ПРОВОКАЦИЯ ================= -->
-<section class="block" id="provokaciya">
-  <div class="wrap">
-    <div class="block-head">
-      <span class="block-tag">Хук 1 из 3</span>
-      <h2>Провокация</h2>
-    </div>
-    <p class="block-sub">Хук ломает привычное мнение или называет вещи прямо. Зритель не может просто пролистать — либо согласен и досматривает, либо спорит в комментариях. <strong>Работает лучше всего</strong>, когда есть чёткая позиция, а не осторожное наблюдение.</p>
-
-    <div class="chip-grid" id="chips-provokaciya"></div>
-
-    <div class="cta-row">
-      <button class="btn gold" onclick="openModal('provokaciya')">Получить 10 хуков-провокаций</button>
-      <span class="hint">нажми на пример выше — скопируется сразу</span>
-    </div>
-  </div>
-</section>
-
-<!-- ================= РЕШЕНИЕ ================= -->
-<section class="block alt" id="reshenie">
-  <div class="wrap">
-    <div class="block-head">
-      <span class="block-tag gold">Хук 2 из 3</span>
-      <h2>Решение</h2>
-    </div>
-    <p class="block-sub">Хук сразу обещает конкретную пользу — шаги, метод, разбор ошибки. Зритель остаётся, потому что видит выгоду для себя <strong>уже в первой фразе</strong>. Хорошо заходит для экспертного и обучающего контента.</p>
-
-    <div class="chip-grid" id="chips-reshenie"></div>
-
-    <div class="cta-row">
-      <button class="btn gold" onclick="openModal('reshenie')">Получить 10 хуков-решений</button>
-      <span class="hint">нажми на пример выше — скопируется сразу</span>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ЛОВУШКА ================= -->
-<section class="block" id="lovushka">
-  <div class="wrap">
-    <div class="block-head">
-      <span class="block-tag">Хук 3 из 3</span>
-      <h2>Ловушка</h2>
-    </div>
-    <p class="block-sub">Хук создаёт разрыв в информации — что-то обещано, но не сказано. Мозг физически не может уйти, не закрыв гештальт. <strong>Осторожно:</strong> обещание в начале обязано выполниться до конца ролика, иначе доверие рушится.</p>
-
-    <div class="chip-grid" id="chips-lovushka"></div>
-
-    <div class="cta-row">
-      <button class="btn gold" onclick="openModal('lovushka')">Получить 10 хуков-ловушек</button>
-      <span class="hint">нажми на пример выше — скопируется сразу</span>
-    </div>
+    <p class="hint" style="margin-top:16px;">Понравился хук - копируй его (клик по хуку) и вставляй в шаг 3 «Давай составим текст рилса» ниже.</p>
   </div>
 </section>
 
@@ -837,7 +776,7 @@
 <section class="block" id="generator">
   <div class="wrap">
     <div class="block-head">
-      <span class="block-tag">Главный инструмент</span>
+      <span class="block-tag">ШАГ 3</span>
       <h2>Давай составим текст рилса</h2>
     </div>
     <p class="block-sub">Запиши его через суфлёр или просто вставь текстом под обычным видео с заголовком-хуком. Отвечаешь на три коротких шага прямо здесь — платформа сама пишет готовый текст, не промт для копирования, а сразу текст, который можно читать на камеру. Не понравилось — жми ещё раз, получишь другой вариант.</p>
@@ -850,15 +789,17 @@
       </div>
 
       <div class="wiz-step" id="wiz-2">
-        <div class="wiz-label"><span class="wiz-num">2</span> В каком стиле рассказываем?</div>
+        <div class="wiz-label"><span class="wiz-num">2</span> В каком стиле рассказываем? <span class="hint">(можно выбрать несколько сразу)</span></div>
         <div class="wiz-options" id="wiz-style-options">
-          <button class="wiz-opt" data-value="научно, но простыми словами - термины сразу расшифрованы">1. Научный, но простыми словами</button>
-          <button class="wiz-opt" data-value="с юмором и лёгкой самоиронией">2. С юмором</button>
-          <button class="wiz-opt" data-value="житейский - как будто рассказываешь подруге на кухне за чаем">3. Житейский, как с подругой на кухне</button>
-          <button class="wiz-opt" data-value="серьёзный, экспертный, по делу, без лишних слов">4. Серьёзный и по делу</button>
-          <button class="wiz-opt" data-value="__custom">5. Свой вариант</button>
+          <label class="wiz-opt" style="display:flex; align-items:center; gap:8px;"><input type="checkbox" class="wiz-style-check" value="научно, но простыми словами - термины сразу расшифрованы"> Научный, но простыми словами</label>
+          <label class="wiz-opt" style="display:flex; align-items:center; gap:8px;"><input type="checkbox" class="wiz-style-check" value="с юмором и лёгкой самоиронией"> С юмором</label>
+          <label class="wiz-opt" style="display:flex; align-items:center; gap:8px;"><input type="checkbox" class="wiz-style-check" value="житейский - как будто рассказываешь подруге на кухне за чаем"> Житейский, как с подругой на кухне</label>
+          <label class="wiz-opt" style="display:flex; align-items:center; gap:8px;"><input type="checkbox" class="wiz-style-check" value="серьёзный, экспертный, по делу, без лишних слов"> Серьёзный и по делу</label>
         </div>
-        <input type="text" id="wiz-style-custom" class="wiz-input" style="display:none; margin-top:10px;" placeholder="опиши стиль своими словами">
+        <div class="cta-row" style="margin-top:8px;">
+          <button type="button" class="btn" id="wiz-style-all-btn" onclick="toggleAllStyles()">Выбрать все</button>
+        </div>
+        <input type="text" id="wiz-style-custom" class="wiz-input" style="margin-top:10px;" placeholder="и/или впиши свой вариант стиля своими словами">
       </div>
 
       <div class="wiz-step" id="wiz-3">
@@ -904,7 +845,7 @@
       <span class="block-tag gold">Бонус</span>
       <h2>Пост-карусель за 3 клика</h2>
     </div>
-    <p class="block-sub">Даёшь тему и выбираешь число слайдов — от 3 до 7. ИИ сам придумает хук на обложку и распишет текст под каждый слайд отдельно, сразу готовый к копированию.</p>
+    <p class="block-sub">Вставляешь хук-заголовок и выбираешь число слайдов — от 3 до 7. Платформа распишет текст под каждый слайд отдельно, сразу готовый к копированию.</p>
 
     <div class="wizard" id="wizard-carousel">
 
@@ -925,41 +866,23 @@
       </div>
 
       <div class="cta-row">
-        <button class="btn gold" onclick="assembleCarouselPrompt()">Собрать промт</button>
-        <span class="hint">заполни тему и выбери число слайдов</span>
+        <button class="btn gold" id="car-btn" onclick="assembleCarouselPrompt()">Написать карусель</button>
+        <span class="hint" id="car-hint">заполни тему и выбери число слайдов</span>
       </div>
 
       <div id="car-result" style="display:none; margin-top:22px;">
-        <p style="font-size:.9rem; color:var(--text-dim); margin-bottom:10px;">Готово. Копируй целиком и вставляй в чат с ИИ одним сообщением:</p>
+        <p style="font-size:.9rem; color:var(--text-dim); margin-bottom:10px;">Готовый текст по слайдам — копируй и переноси в конструктор карусели:</p>
         <div class="promptbox" id="prompt-carousel"></div>
-        <button class="btn" onclick="copyBlock('prompt-carousel', this)">Скопировать промт</button>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;">
+          <button class="btn" onclick="copyBlock('prompt-carousel', this)">Скопировать текст</button>
+          <button class="btn gold" onclick="assembleCarouselPrompt()">Ещё вариант</button>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ================= ОПИСАНИЕ ================= -->
-<section class="block alt" id="opisanie">
-  <div class="wrap">
-    <div class="block-head">
-      <span class="block-tag gold">Бонус</span>
-      <h2>Описание под Reels</h2>
-    </div>
-    <p class="block-sub">Хук досмотрели — теперь нужно описание, которое ведёт дальше: в сохранение, комментарий или подписку. Три готовых формулы под разные ситуации — выбираешь по формату ролика.</p>
-
-    <div class="chip-grid" style="grid-template-columns:1fr;">
-      <button class="chip" onclick="openModal('opisanie')" style="cursor:pointer;">
-        <strong>Экспертный ролик</strong> · <strong>Лайф-рассказ по надиктовке</strong> · <strong>Адаптация чужого текста</strong><br>
-        <span style="color:var(--text-dim); font-size:.85rem;">нажми — откроются все три промта с формулой</span>
-      </button>
-    </div>
-
-    <div class="cta-row">
-      <button class="btn gold" onclick="openModal('opisanie')">Открыть формулы описаний</button>
-    </div>
-  </div>
-</section>
 
 <footer>
   <div class="wrap">
@@ -982,208 +905,9 @@
 </footer>
 
 <!-- ================= MODALS ================= -->
-<div class="modal-backdrop" id="modal-provokaciya">
-  <div class="modal">
-    <div class="modal-top">
-      <div><div class="modal-tag">Провокация</div><h3>10 хуков-провокаций под твою тему</h3></div>
-      <button class="modal-close" onclick="closeModal('provokaciya')">✕</button>
-    </div>
-    <p>Впиши свою тему — получишь готовые хуки этого типа. Нажми на любой, чтобы скопировать.</p>
-    <input type="text" class="wiz-input hg-topic" data-key="provokaciya" placeholder="например: прокрастинация, страх камеры, лишний вес">
-    <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-      <button class="btn gold" onclick="genHooksFor('provokaciya')">Собрать хуки</button>
-      <button class="btn hg-copyall" data-key="provokaciya" style="display:none;" onclick="copyAllFor('provokaciya')">Скопировать все</button>
-    </div>
-    <div class="chip-grid" id="hg-out-provokaciya" style="margin-top:16px;"></div>
-  </div>
-</div>
-
-<div class="modal-backdrop" id="modal-reshenie">
-  <div class="modal">
-    <div class="modal-top">
-      <div><div class="modal-tag">Решение</div><h3>10 хуков-решений под твою тему</h3></div>
-      <button class="modal-close" onclick="closeModal('reshenie')">✕</button>
-    </div>
-    <p>Впиши свою тему — получишь готовые хуки этого типа. Нажми на любой, чтобы скопировать.</p>
-    <input type="text" class="wiz-input hg-topic" data-key="reshenie" placeholder="например: выгорание, режим дня, первые продажи">
-    <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-      <button class="btn gold" onclick="genHooksFor('reshenie')">Собрать хуки</button>
-      <button class="btn hg-copyall" data-key="reshenie" style="display:none;" onclick="copyAllFor('reshenie')">Скопировать все</button>
-    </div>
-    <div class="chip-grid" id="hg-out-reshenie" style="margin-top:16px;"></div>
-  </div>
-</div>
-
-<div class="modal-backdrop" id="modal-lovushka">
-  <div class="modal">
-    <div class="modal-top">
-      <div><div class="modal-tag">Ловушка</div><h3>10 хуков-ловушек под твою тему</h3></div>
-      <button class="modal-close" onclick="closeModal('lovushka')">✕</button>
-    </div>
-    <p>Впиши свою тему — получишь готовые хуки этого типа. Нажми на любой, чтобы скопировать.</p>
-    <input type="text" class="wiz-input hg-topic" data-key="lovushka" placeholder="например: отношения, деньги, самооценка">
-    <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-      <button class="btn gold" onclick="genHooksFor('lovushka')">Собрать хуки</button>
-      <button class="btn hg-copyall" data-key="lovushka" style="display:none;" onclick="copyAllFor('lovushka')">Скопировать все</button>
-    </div>
-    <div class="chip-grid" id="hg-out-lovushka" style="margin-top:16px;"></div>
-  </div>
-</div>
-
-<div class="modal-backdrop" id="modal-opisanie">
-  <div class="modal">
-    <div class="modal-top">
-      <div><div class="modal-tag">Бонус</div><h3>Формулы описаний под Reels</h3></div>
-      <button class="modal-close" onclick="closeModal('opisanie')">✕</button>
-    </div>
-    <div class="tabs">
-      <button class="tab active" onclick="switchTab(event,'tab-expert')">Экспертный</button>
-      <button class="tab" onclick="switchTab(event,'tab-life')">Лайф-рассказ</button>
-      <button class="tab" onclick="switchTab(event,'tab-adapt')">Адаптация</button>
-    </div>
-
-    <div class="tabpanel active" id="tab-expert">
-      <p><strong>Формула:</strong> хук (1 фраза) → 3–5 чётких тезисов решения → финальный призыв (подписка / сохранить / комментарий). Стиль — уверенно, спокойно, по делу, без метафор.</p>
-      <div class="promptbox" id="prompt-expert">Структура:
-1. Хук (1 фраза)
-2. 3-5 чётких шагов / тезисов решения (из моего текста)
-3. Финальный СТА (подписка / сохранить / комментарий)
-
-Дополнительно:
-— стиль: уверенно, спокойно, экспертно
-— язык простой, разговорный
-— без клише, без метафор
-— будто зритель уже тебе доверяет
-
-Формат ответа:
-Заголовок (триггерно-новостной, с клиффхэнгером)
-Хук:
-Тезис 1:
-Тезис 2:
-Тезис 3:
-(если нужно — Тезис 4-5)
-СТА:
-
-Вот текст: <вставь надиктовку></div>
-      <button class="btn" onclick="copyBlock('prompt-expert', this)">Скопировать промт</button>
-    </div>
-
-    <div class="tabpanel" id="tab-life">
-      <p><strong>Формула:</strong> для случая, когда у тебя уже есть голосовая надиктовка мысли — ИИ превращает её в сценарий на 25-30 секунд, сохраняя твою интонацию, без новых смыслов.</p>
-      <div class="promptbox" id="prompt-life">Ты — сценарист Reels и редактор живой речи.
-Я отправляю тебе транскрипцию моего голосового сообщения (это может быть хаотичная, разговорная диктовка).
-Твоя задача — на основе ЭТОГО ТЕКСТА создать Reels-сценарий на 25-30 секунд.
-
-ВАЖНО:
-— не добавляй новые смыслы, не учи и не морализируй, не усложняй формулировки
-— сохрани мою интонацию и мысль
-— убери повторы, лишние слова и воду
-— усили подачу через структуру, а не через новые идеи
-
-Сделай так:
-— мощный хук в первой фразе (переформулируй из моего текста)
-— разговорный стиль, будто я говорю в камеру
-— короткие, живые предложения
-— логичный ритм, без затянутых подводок
-
-СТРУКТУРА:
-1. Хук
-2. Основная мысль (из диктовки)
-3. Усиление / осознание
-4. Вывод или финальная фраза
-5. Лёгкий СТА (сохранить / подписаться / подумать)
-
-Дай этому сценарию заголовок в триггерно-новостном стиле, с клиффхэнгером, без слова «я» в заголовке.
-
-Формат ответа:
-Заголовок:
-Хук:
-Основная часть:
-Усиление:
-Финальная фраза:
-СТА:
-
-Вот транскрипция голосового сообщения: <вставь текст></div>
-      <button class="btn" onclick="copyBlock('prompt-life', this)">Скопировать промт</button>
-    </div>
-
-    <div class="tabpanel" id="tab-adapt">
-      <p><strong>Формула:</strong> берёшь чужой сценарий или пост, который понравился, — ИИ переписывает под твой голос, сохраняя мысль, но без единой скопированной формулировки.</p>
-      <div class="promptbox" id="prompt-adapt">Ты — мой контент-стратег и редактор.
-Я отправляю тебе чужой сценарий / пост / Reels / карусель (может быть на любом языке).
-Твоя задача — адаптировать этот контент под мой блог так, чтобы результат был авторским, без плагиата, без копирования формулировок, без повторения структуры предложений, но с сохранением исходного смысла.
-
-ВАЖНО:
-— не добавляй новые идеи, не расширяй смысл, не уводи в лирику, не цитируй оригинал
-— используй мой стиль: разговорный, уверенный, экспертный
-— язык простой, живой
-
-Правила адаптации:
-1. Полностью перепиши текст другими словами
-2. Измени синтаксис и порядок формулировок
-3. Убери авторский почерк оригинала
-4. Оставь 1 мысль = 1 логический блок
-5. Сохрани объём текста (±10%)
-
-Если формат Reels — 25-30 секунд, разговорная подача, сильный хук в начале, финальная фраза / СТА.
-Если формат карусель на 5-8 слайдов — короткие чёткие формулировки, практическая польза.
-
-Перед тем как выдать результат — кратко проверь текст на риск плагиата, убедись, что его можно публиковать безопасно.
-
-Вот чужой контент: <вставь текст></div>
-      <button class="btn" onclick="copyBlock('prompt-adapt', this)">Скопировать промт</button>
-    </div>
-  </div>
-</div>
-
 <div class="toast" id="toast">Скопировано</div>
 
 <script>
-  const DATA = {
-    provokaciya: [
-      "Неприятная правда о [тема]",
-      "Никто тебе не скажет, но [факт]",
-      "Хватит [привычное действие] — это не работает",
-      "Кто тебе сказал, что [миф про твою нишу]?",
-      "Это разрушит твоё представление о [тема]",
-      "Непопулярное мнение: [твоя позиция]",
-    ],
-    reshenie: [
-      "3 шага, чтобы [результат]",
-      "Ошибка номер один, которую совершает каждый [аудитория]",
-      "Вот что реально работает, если хочешь [результат]",
-      "Простой способ [результат] за [время]",
-      "Украдите мою стратегию [результата]",
-      "Пошаговый разбор: как [результат] с нуля",
-    ],
-    lovushka: [
-      "Досмотри до конца — в последней секунде [интрига]",
-      "Секрет, который [аудитория] узнаёт последними",
-      "Что, если я скажу тебе, что [неожиданный факт]?",
-      "Во мне есть одна вещь, о которой я никогда не говорила…",
-      "Может показаться странным, но [действие]",
-      "Ты точно не готов(а) к тому, что я скажу дальше",
-    ],
-  };
-
-  function fillChips(key){
-    const grid = document.getElementById('chips-'+key);
-    DATA[key].forEach((text)=>{
-      const btn = document.createElement('button');
-      btn.className = 'chip';
-      btn.innerHTML = text.replace(/\[([^\]]+)\]/g, '<span class="fill">[$1]</span>') + '<span class="copy-flag">копировать</span>';
-      btn.addEventListener('click', ()=>{
-        copyText(text, btn.querySelector('.copy-flag'));
-        btn.classList.add('copied');
-        setTimeout(()=>btn.classList.remove('copied'), 1400);
-      });
-      grid.appendChild(btn);
-    });
-  }
-  fillChips('provokaciya');
-  fillChips('reshenie');
-  fillChips('lovushka');
-
   function parseNumberedList(text){
     return text.split('\n')
       .map(s => s.replace(/^\s*\d+[\.\)]\s*/, '').trim())
@@ -1255,45 +979,6 @@
     }
   }
 
-  /* ---------- генератор хуков в модалках-примерах (тот же бэкенд) ---------- */
-  const HOOK_STATE = {};
-  async function genHooksFor(key){
-    const inp = document.querySelector('.hg-topic[data-key="'+key+'"]');
-    const raw = (inp && inp.value || '').trim();
-    if(!raw){ showToast('Впиши тему'); if(inp) inp.focus(); return; }
-    const out = document.getElementById('hg-out-'+key);
-    out.innerHTML = '<span class="hint">Ищу неочевидные углы, секунд 15-20...</span>';
-    try{
-      const text = await apiGenerate('hookset', { type: key, topic: raw });
-      const list = parseNumberedList(text);
-      HOOK_STATE[key] = list;
-      out.innerHTML = '';
-      list.forEach(function(text){
-        const b = document.createElement('button');
-        b.className = 'chip';
-        b.innerHTML = text + '<span class="copy-flag">копировать</span>';
-        b.addEventListener('click', function(){
-          copyText(text, b.querySelector('.copy-flag'));
-          b.classList.add('copied');
-          setTimeout(function(){ b.classList.remove('copied'); }, 1400);
-        });
-        out.appendChild(b);
-      });
-      const all = document.querySelector('.hg-copyall[data-key="'+key+'"]');
-      if(all) all.style.display = 'inline-flex';
-    } catch(err){
-      out.innerHTML = '';
-      showToast(err.message);
-    }
-  }
-  function copyAllFor(key){
-    const list = HOOK_STATE[key] || [];
-    if(!list.length) return;
-    navigator.clipboard.writeText(list.map(function(x,i){ return (i+1)+'. '+x; }).join('\n'))
-      .then(function(){ showToast('Все хуки скопированы'); })
-      .catch(function(){ showToast('Не удалось скопировать — выдели вручную'); });
-  }
-
   function copyText(text, flagEl){
     navigator.clipboard.writeText(text).then(()=>{
       showToast('Скопировано');
@@ -1354,13 +1039,28 @@
       });
     });
   }
-  setupOptGroup('wiz-style-options', 'wiz-style-custom', (v)=>{ wizStyle = v; });
   setupOptGroup('wiz-cta-options', 'wiz-cta-custom', (v)=>{ wizCta = v; });
+
+  function toggleAllStyles(){
+    const boxes = document.querySelectorAll('.wiz-style-check');
+    const allChecked = Array.from(boxes).every(b => b.checked);
+    boxes.forEach(b => b.checked = !allChecked);
+    document.getElementById('wiz-style-all-btn').textContent = allChecked ? 'Выбрать все' : 'Снять все';
+  }
+
+  function getSelectedStyles(){
+    const picked = Array.from(document.querySelectorAll('.wiz-style-check:checked')).map(b => b.value);
+    const custom = document.getElementById('wiz-style-custom').value.trim();
+    if(custom) picked.push(custom);
+    return picked.join(' + ');
+  }
 
   async function assemblePrompt(){
     const topic = document.getElementById('wiz-topic').value.trim();
     if(!topic){ showToast('Впиши тему в шаг 1'); document.getElementById('wiz-topic').focus(); return; }
-    if(!wizStyle){ showToast('Выбери стиль в шаге 2'); return; }
+    const wizStyleSelected = getSelectedStyles();
+    if(!wizStyleSelected){ showToast('Выбери хотя бы один стиль в шаге 2'); return; }
+    wizStyle = wizStyleSelected;
     if(!wizCta){ showToast('Выбери цель в шаге 3'); return; }
 
     const btn = document.getElementById('wiz-btn');
@@ -1388,38 +1088,23 @@
   let carSlides = null;
   setupOptGroup('car-slides-options', null, (v)=>{ carSlides = v; });
 
-  function assembleCarouselPrompt(){
+  async function assembleCarouselPrompt(){
     const topic = document.getElementById('car-topic').value.trim();
     if(!topic){ showToast('Впиши тему в шаг 1'); document.getElementById('car-topic').focus(); return; }
     if(!carSlides){ showToast('Выбери число слайдов в шаге 2'); return; }
 
-    const n = parseInt(carSlides, 10);
-    const prompt = `Ты — сценарист каруселей для Instagram и Reels.
-
-Тема: ${topic}
-Количество слайдов: ${n}
-
-Собери карусель по формуле:
-— Слайд 1 - хук на обложку: короткая цепляющая фраза, которая останавливает пролистывание
-— Слайды 2-${n-1} - по одной мысли на слайд, раскрывают тему по делу, с конкретикой
-— Слайд ${n} - вывод и мягкий призыв (сохранить / подписаться / написать в комментариях)
-
-Правила:
-— каждый слайд - короткий текст, 1-3 коротких предложения, читается за 3-4 секунды
-— простой разговорный язык, без канцелярита
-— конкретика вместо общих слов: цифры, примеры, детали
-— без длинного тире, только короткое «-»
-— один слайд = одна мысль, не смешивай темы внутри слайда
-
-Выдай готовый текст сразу для каждого слайда отдельно, пронумеровав их:
-Слайд 1 (хук):
-Слайд 2:
-...
-Слайд ${n} (вывод + СТА):`;
-
-    document.getElementById('prompt-carousel').textContent = prompt;
-    document.getElementById('car-result').style.display = 'block';
-    document.getElementById('car-result').scrollIntoView({behavior:'smooth', block:'nearest'});
+    const btn = document.getElementById('car-btn');
+    const hint = document.getElementById('car-hint');
+    btn.disabled = true; hint.textContent = 'Копаю инсайты и пишу слайды, секунд 20-30...';
+    try{
+      const text = await apiGenerate('carousel', { topic, slides: carSlides });
+      document.getElementById('prompt-carousel').textContent = text;
+      document.getElementById('car-result').style.display = 'block';
+      document.getElementById('car-result').scrollIntoView({behavior:'smooth', block:'nearest'});
+    } catch(err){
+      showToast(err.message);
+    }
+    btn.disabled = false; hint.textContent = 'заполни тему и выбери число слайдов';
   }
 
   function switchTab(evt, panelId){

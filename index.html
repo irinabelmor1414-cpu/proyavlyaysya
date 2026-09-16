@@ -710,34 +710,42 @@
   </div>
 </div>
 
-<div class="section-title-wrap">
-  <div class="wrap">
-    <h2 class="section-title">Давай раскроем эту тему через:</h2>
-  </div>
-</div>
-
-<!-- ================= РАСКРЫТИЕ ТЕМЫ ================= -->
+<!-- ================= О ЧЁМ ПИШЕМ + ХУКИ ПО НАПРАВЛЕНИЯМ ================= -->
 <section class="block" id="raskrytie">
   <div class="wrap">
     <div class="block-head">
       <span class="block-tag">Шаг 0</span>
       <h2>О чём будем писать</h2>
     </div>
-    <p class="block-sub">Впиши тему в общем виде. Мы разложим её на 10 неочевидных углов - не банальные советы, а то, что знают только профи в этой теме. Дальше выбираешь один угол, и с ним уже собираем хук и текст.</p>
+    <p class="block-sub"><strong>Хук - это заголовок для твоего рилса или поста-карусели.</strong> Его задача - зацепить внимание в первые секунды, чтобы человек не пролистнул, а остался смотреть или читать дальше. Впиши тему - и ниже получишь готовые хуки сразу по всем трём направлениям.</p>
 
     <input type="text" id="rk-topic" class="wiz-input" placeholder="например: прокрастинация, деньги, отношения, продажи">
-    <div class="cta-row">
-      <button class="btn gold" id="rk-btn" onclick="generateSubtopics()">Раскрыть тему</button>
-      <span class="hint" id="rk-hint">это займёт секунд 10-15</span>
-    </div>
 
-    <div id="rk-result" style="display:none; margin-top:20px;">
-      <div id="rk-list" class="chip-grid" style="flex-direction:column; align-items:stretch;"></div>
-      <div class="cta-row" style="margin-top:14px;">
-        <button class="btn" onclick="generateSubtopics(true)">Другие варианты</button>
+    <div class="hook-dir-grid" style="margin-top:18px; display:flex; flex-direction:column; gap:18px;">
+
+      <div class="hook-dir">
+        <div class="block-head" style="margin-bottom:6px;"><span class="block-tag">Провокация</span></div>
+        <p class="hint" style="margin:0 0 8px;">Ломает привычное мнение или называет вещи прямо - зритель либо соглашается, либо спорит в комментариях.</p>
+        <button class="btn gold" onclick="genHooksInline('provokaciya')">Получить 10 хуков-провокаций</button>
+        <div class="chip-grid" id="rk-out-provokaciya" style="margin-top:12px;"></div>
       </div>
-      <p class="hint" id="rk-selected" style="margin-top:10px;"></p>
+
+      <div class="hook-dir">
+        <div class="block-head" style="margin-bottom:6px;"><span class="block-tag gold">Решение</span></div>
+        <p class="hint" style="margin:0 0 8px;">Сразу обещает конкретную пользу - шаг, метод, разбор ошибки. Выгода видна в первой фразе.</p>
+        <button class="btn gold" onclick="genHooksInline('reshenie')">Получить 10 хуков-решений</button>
+        <div class="chip-grid" id="rk-out-reshenie" style="margin-top:12px;"></div>
+      </div>
+
+      <div class="hook-dir">
+        <div class="block-head" style="margin-bottom:6px;"><span class="block-tag">Ловушка</span></div>
+        <p class="hint" style="margin:0 0 8px;">Создаёт разрыв в информации - что-то обещано, но не сказано сразу. Мозг не может уйти, не узнав продолжение.</p>
+        <button class="btn gold" onclick="genHooksInline('lovushka')">Получить 10 хуков-ловушек</button>
+        <div class="chip-grid" id="rk-out-lovushka" style="margin-top:12px;"></div>
+      </div>
+
     </div>
+    <p class="hint" style="margin-top:16px;">Понравился хук - копируй его (клик по хуку) и вставляй в шаг «Давай составим текст рилса» ниже.</p>
   </div>
 </section>
 
@@ -806,15 +814,15 @@
   <div class="wrap">
     <div class="block-head">
       <span class="block-tag">Главный инструмент</span>
-      <h2>Собери текст под свою тему за 3 клика</h2>
+      <h2>Давай составим текст рилса</h2>
     </div>
-    <p class="block-sub">Отвечаешь на три коротких шага прямо здесь. Платформа сама пишет готовый текст под Reels или пост — не промт для копирования, а сразу текст, который можно читать на камеру. Не понравилось — жми ещё раз, получишь другой вариант.</p>
+    <p class="block-sub">Запиши его через суфлёр или просто вставь текстом под обычным видео с заголовком-хуком. Отвечаешь на три коротких шага прямо здесь — платформа сама пишет готовый текст, не промт для копирования, а сразу текст, который можно читать на камеру. Не понравилось — жми ещё раз, получишь другой вариант.</p>
 
     <div class="wizard" id="wizard">
 
       <div class="wiz-step" id="wiz-1">
-        <div class="wiz-label"><span class="wiz-num">1</span> На какую тему пишем текст?</div>
-        <input type="text" id="wiz-topic" class="wiz-input" placeholder="например: прокрастинация у экспертов">
+        <div class="wiz-label"><span class="wiz-num">1</span> Вставь сюда понравившийся хук - заголовок</div>
+        <input type="text" id="wiz-topic" class="wiz-input" placeholder="например: тот хук, что ты скопировала в шаге 0">
       </div>
 
       <div class="wiz-step" id="wiz-2">
@@ -853,6 +861,12 @@
           <button class="btn" onclick="copyBlock('prompt-wizard', this)">Скопировать текст</button>
           <button class="btn gold" onclick="assemblePrompt()">Ещё вариант</button>
         </div>
+
+        <div id="wiz-desc-block" style="display:none; margin-top:20px; padding-top:16px; border-top:1px solid var(--line);">
+          <p style="font-size:.9rem; color:var(--text-dim); margin-bottom:10px;">Если записала разговорный рилс — вот короткое описание под видео:</p>
+          <div class="promptbox" id="prompt-desc"></div>
+          <button class="btn" style="margin-top:10px;" onclick="copyBlock('prompt-desc', this)">Скопировать описание</button>
+        </div>
       </div>
 
     </div>
@@ -871,8 +885,8 @@
     <div class="wizard" id="wizard-carousel">
 
       <div class="wiz-step">
-        <div class="wiz-label"><span class="wiz-num">1</span> На какую тему карусель?</div>
-        <input type="text" id="car-topic" class="wiz-input" placeholder="например: 5 ошибок в позиционировании эксперта">
+        <div class="wiz-label"><span class="wiz-num">1</span> Вставь сюда понравившийся хук - заголовок</div>
+        <input type="text" id="car-topic" class="wiz-input" placeholder="например: тот хук, что ты скопировала в шаге 0">
       </div>
 
       <div class="wiz-step">
@@ -1146,50 +1160,41 @@
   fillChips('reshenie');
   fillChips('lovushka');
 
-  /* ---------- раскрытие темы (промт А, зашит на бэкенде) ---------- */
   function parseNumberedList(text){
     return text.split('\n')
       .map(s => s.replace(/^\s*\d+[\.\)]\s*/, '').trim())
       .filter(s => s.length > 0);
   }
 
-  let selectedTopic = '';
-
-  async function generateSubtopics(isRegen){
+  /* ---------- хуки прямо в шаге 0 (промт Б как линза + бэкенд) ---------- */
+  async function genHooksInline(key){
     const topicInput = document.getElementById('rk-topic');
     const topic = topicInput.value.trim();
-    if(!topic){ showToast('Впиши тему'); topicInput.focus(); return; }
-    const btn = document.getElementById('rk-btn');
-    const hint = document.getElementById('rk-hint');
-    btn.disabled = true; hint.textContent = 'Копаю глубоко, секунд 10-15...';
+    if(!topic){ showToast('Впиши тему выше'); topicInput.focus(); return; }
+    const out = document.getElementById('rk-out-'+key);
+    out.innerHTML = '<span class="hint">Ищу неочевидные углы, секунд 15-20...</span>';
     try{
-      const text = await apiGenerate('subtopics', { topic });
-      const items = parseNumberedList(text);
-      const list = document.getElementById('rk-list');
-      list.innerHTML = '';
-      items.forEach(function(item){
+      const text = await apiGenerate('hookset', { type: key, topic });
+      const list = parseNumberedList(text);
+      out.innerHTML = '';
+      list.forEach(function(hookText){
         const b = document.createElement('button');
         b.className = 'chip';
-        b.style.textAlign = 'left';
-        b.innerHTML = item + '<span class="copy-flag">выбрать</span>';
+        b.innerHTML = hookText + '<span class="copy-flag">копировать</span>';
         b.addEventListener('click', function(){
-          selectedTopic = item;
-          document.getElementById('rk-selected').textContent = 'Выбрано: ' + item;
-          document.querySelectorAll('.hg-topic').forEach(inp => inp.value = item);
-          const wizTopic = document.getElementById('wiz-topic');
-          if(wizTopic) wizTopic.value = item;
-          showToast('Тема выбрана - теперь жми "Собрать хуки" или спускайся к мастеру текста');
+          copyText(hookText, b.querySelector('.copy-flag'));
+          b.classList.add('copied');
+          setTimeout(function(){ b.classList.remove('copied'); }, 1400);
         });
-        list.appendChild(b);
+        out.appendChild(b);
       });
-      document.getElementById('rk-result').style.display = 'block';
     } catch(err){
+      out.innerHTML = '';
       showToast(err.message);
     }
-    btn.disabled = false; hint.textContent = 'это займёт секунд 10-15';
   }
 
-  /* ---------- генератор хуков по теме (промт Б как линза + бэкенд) ---------- */
+  /* ---------- генератор хуков в модалках-примерах (тот же бэкенд) ---------- */
   const HOOK_STATE = {};
   async function genHooksFor(key){
     const inp = document.querySelector('.hg-topic[data-key="'+key+'"]');
@@ -1304,7 +1309,14 @@
       const text = await apiGenerate('textmaster', { topic, style: wizStyle, cta: wizCta });
       document.getElementById('prompt-wizard').textContent = text;
       document.getElementById('wiz-result').style.display = 'block';
+      document.getElementById('wiz-desc-block').style.display = 'none';
       document.getElementById('wiz-result').scrollIntoView({behavior:'smooth', block:'nearest'});
+
+      try{
+        const desc = await apiGenerate('shortdesc', { text });
+        document.getElementById('prompt-desc').textContent = desc;
+        document.getElementById('wiz-desc-block').style.display = 'block';
+      } catch(e2){ /* описание необязательное - тихо пропускаем, если не вышло */ }
     } catch(err){
       showToast(err.message);
     }
